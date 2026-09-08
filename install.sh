@@ -45,7 +45,7 @@ install_program() {
 
 # Instalar dependencias
 echo -e "${GREEN}Instalando dependecias...${NC}"
-sudo apt install -y git wget libx11-dev libxft-dev libxinerama-dev build-essential unzip xinit xserver-xorg-core x11-xserver-utils x11-xkb-utils feh thunar
+sudo apt install -y git wget libx11-dev libxft-dev libxinerama-dev build-essential unzip xinit xserver-xorg-core x11-xserver-utils x11-xkb-utils feh thunar pipewire-audio
 
 # Instalar Nerd Fonts
 echo -e "${GREEN}Instalando JetBrains Mono Nerd Font...${NC}"
@@ -82,7 +82,7 @@ fi
 # Instalando programas
 install_program "$DWM_REPO" "dwm"
 install_program "$ST_REPO" "st"
-install_program "$DMEMU_REPO" "dmenu"
+install_program "$DMENU_REPO" "dmenu"
 
 # Copiando script de autostart
 echo -e "${GREEN}Configurando autostart...${NC}"
@@ -94,7 +94,7 @@ if [ -f "$INSTALL_DIR/dwm/scripts/autostart.sh" ]; then
 fi
 
 # Crear enlace simbolico para la barra de estado
-if [ -f "$INSTALL_DIR/dwm/scripts/bar.sh"]; then
+if [ -f "$INSTALL_DIR/dwm/scripts/bar.sh" ]; then
 	chmod +x "$INSTALL_DIR/dwm/scripts/bar.sh"
 	ln -sf "$INSTALL_DIR/dwm/scripts/bar.sh" "$BIN_DIR/bar.sh"
 fi
