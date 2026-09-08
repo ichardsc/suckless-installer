@@ -23,19 +23,19 @@ mkdir -p "$INSTALL_DIR" "$BIN_DIR" "$FONTS_DIR" "$WALLPAPER_DIR"
 # Funcion para instalar cada programa
 install_program() {
 	local repo=$1
-	local repo=$2
+	local name=$2
 
 	echo -e "${GREEN}Instalando $name...${NC}"
 	cd "$INSTALL_DIR"
 	
 	# Verifica si existe el directorio
 	# Si existe lo acutaliza, si no, lo clona.
-	if [-d "$name" ]; then
+	if [ -d "$name" ]; then
 		echo "Actualizando $name..."
 		cd "$name"
 		git pull
 	else
-		git clone "$repo" "name"
+		git clone "$repo" "$name"
 		cd $name
 	fi
 
@@ -82,7 +82,7 @@ fi
 # Instalando programas
 install_program "$DWM_REPO" "dwm"
 install_program "$ST_REPO" "st"
-install_program "$DEMU_REPO" "dmenu"
+install_program "$DMEMU_REPO" "dmenu"
 
 # Copiando script de autostart
 echo -e "${GREEN}Configurando autostart...${NC}"
@@ -94,7 +94,7 @@ if [ -f "$INSTALL_DIR/dwm/scripts/autostart.sh" ]; then
 fi
 
 # Crear enlace simbolico para la barra de estado
-if [-f "$INSTALL_DIR/dwm/scripts/bar.sh"]; then
+if [ -f "$INSTALL_DIR/dwm/scripts/bar.sh"]; then
 	chmod +x "$INSTALL_DIR/dwm/scripts/bar.sh"
 	ln -sf "$INSTALL_DIR/dwm/scripts/bar.sh" "$BIN_DIR/bar.sh"
 fi
