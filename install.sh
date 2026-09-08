@@ -102,6 +102,12 @@ fi
 # Copiando wallpaper
 cp "$INSTALL_DIR/dwm/wallpapers/default-wallpaper.jpg" "$WALLPAPER_DIR/"
 
-echo -e "${GREEN}Instalacion completada!"
-echo "Para iniciar dwm, agrega lo siguiente en ~/.xinitrc:"
-echo "exec dwm"
+# Configurar .xinitrc
+echo -e "${GREEN}Configuring ~/.xinitrc...${NC}"
+cat > "$HOME/.xinitrc" << 'EOF'
+#!/bin/sh
+exec dwm
+EOF
+chmod +x "$HOME/.xinitrc"
+
+echo -e "${GREEN}Installation completed!${NC}"
